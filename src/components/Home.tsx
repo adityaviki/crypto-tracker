@@ -40,7 +40,7 @@ export default function Home() {
 	const [searchResults, setSearchResults] = useState<CryptoCoin[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-
+	const [firstLoad, setFirstLoad] = useState<boolean>(true);
 	const [selectedCurrency, setSelectedCurrency] = useState<string>(
 		API_CONFIG.DEFAULT_CURRENCY
 	);
@@ -56,6 +56,7 @@ export default function Home() {
 			})
 			.finally(() => {
 				setIsLoading(false);
+				setFirstLoad(false);
 			});
 	}, [selectedCurrency]);
 
@@ -76,86 +77,100 @@ export default function Home() {
 	}, [cryptoCoins, searchTerm]);
 
 	return (
-		<div className={styles.mainContainer}>
-			{searchResults.length > 0 && (
-				<>
-					<div className={styles.title}>Crypto Tracker</div>
-					<div className={styles.searchContainer}>
-						<TextField
-							sx={{
-								width: "200px",
-							}}
-							value={searchTerm}
-							onChange={(event) => {
-								setSearchTerm(event.target.value);
-							}}
-							size="small"
-							variant="outlined"
-							label="Search"
-						/>
-						<Select
-							value={selectedCurrency}
-							renderValue={(selected) => (
-								<Box
-									sx={{
-										display: "flex",
-										alignItems: "center",
-										gap: 1,
-									}}
-								>
-									{selected || "Select Currency"}
-									{isLoading && (
-										<CircularProgress
-											size={16}
-											thickness={5}
-										/>
-									)}
-								</Box>
-							)}
-							disabled={isLoading}
-							onChange={(event) => {
-								setSelectedCurrency(event.target.value);
-							}}
-							displayEmpty
-							inputProps={{
-								"aria-label": "Select Currency",
-							}}
-							sx={{ minWidth: 120 }}
-							size="small"
-						>
-							{API_CONFIG.CURRENCY_OPTIONS.map((currency) => (
-								<MenuItem key={currency} value={currency}>
-									{currency}
-								</MenuItem>
-							))}
-						</Select>
-					</div>
-					<div className={styles.mainContent}>
-						<CryptoList
-							{...{
-								perPage,
-								setPerPage,
-								setCurrentPage,
-								searchResults,
-								currentPage,
-								setSelectedCoin,
-							}}
-						/>
-						<RecentlyViewedCoins
-							{...{
-								cryptoCoins,
-								setSelectedCoin,
-								selectedCoin,
-							}}
-						/>
-					</div>
-				</>
+		<>
+			{firstLoad && (
+				<div className={styles.firstLoadSpinner}>
+					<CircularProgress size={64} thickness={5} />
+				</div>
 			)}
-			<CoinDetailsModal
-				selectedCoin={selectedCoin}
-				selectedCurrency={selectedCurrency}
-				setSelectedCoin={setSelectedCoin}
-			/>
-		</div>
+			{!firstLoad && (
+				<div className={styles.mainContainer}>
+					{searchResults.length > 0 && (
+						<>
+							<div className={styles.title}>Crypto Tracker</div>
+							<div className={styles.searchContainer}>
+								<TextField
+									sx={{
+										width: "200px",
+									}}
+									value={searchTerm}
+									onChange={(event) => {
+										setSearchTerm(event.target.value);
+									}}
+									size="small"
+									variant="outlined"
+									label="Search"
+								/>
+								<Select
+									value={selectedCurrency}
+									renderValue={(selected) => (
+										<Box
+											sx={{
+												display: "flex",
+												alignItems: "center",
+												gap: 1,
+											}}
+										>
+											{selected || "Select Currency"}
+											{isLoading && (
+												<CircularProgress
+													size={16}
+													thickness={5}
+												/>
+											)}
+										</Box>
+									)}
+									disabled={isLoading}
+									onChange={(event) => {
+										setSelectedCurrency(event.target.value);
+									}}
+									displayEmpty
+									inputProps={{
+										"aria-label": "Select Currency",
+									}}
+									sx={{ minWidth: 120 }}
+									size="small"
+								>
+									{API_CONFIG.CURRENCY_OPTIONS.map(
+										(currency) => (
+											<MenuItem
+												key={currency}
+												value={currency}
+											>
+												{currency}
+											</MenuItem>
+										)
+									)}
+								</Select>
+							</div>
+							<div className={styles.mainContent}>
+								<CryptoList
+									{...{
+										perPage,
+										setPerPage,
+										setCurrentPage,
+										searchResults,
+										currentPage,
+										setSelectedCoin,
+									}}
+								/>
+								<RecentlyViewedCoins
+									{...{
+										cryptoCoins,
+										setSelectedCoin,
+										selectedCoin,
+									}}
+								/>
+							</div>
+						</>
+					)}
+					<CoinDetailsModal
+						selectedCoin={selectedCoin}
+						selectedCurrency={selectedCurrency}
+						setSelectedCoin={setSelectedCoin}
+					/>
+				</div>
+			)}
+		</>
 	);
 }
