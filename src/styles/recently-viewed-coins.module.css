@@ -1,0 +1,28 @@
+.recentlyViewedContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	min-width: 140px;
+	border-radius: 8px;
+	margin-bottom: 64px;
+}
+
+.recentlyViewedTitle {
+	font-size: 20px;
+	color: rgb(87, 87, 87);
+}
+
+.recentlyViewedList {
+	margin-top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	border-radius: 8px;
+}
+
+.recentlyViewedCoin {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	cursor: pointer;
+}

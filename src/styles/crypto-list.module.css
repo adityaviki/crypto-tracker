@@ -1,0 +1,42 @@
+.coinNameContainer {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.positiveChange {
+	color: green !important;
+}
+
+.negativeChange {
+	color: red !important;
+}
+
+.paginationContainer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 24px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.tabelCellInner {
+	cursor: pointer;
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.sortIcon {
+	color: rgb(77, 77, 77);
+	height: 20px !important;
+	width: 20px !important;
+}
+
+.cryptoListContainer {
+	overflow-x: auto;
+	padding: 2px;
+}

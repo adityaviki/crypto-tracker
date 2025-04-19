@@ -1,0 +1,28 @@
+.mainContainer {
+  position: absolute;
+  width: fit-content;
+  z-index: 100;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.errorMessage {
+  padding: 16px;
+  background-color: #c53030;
+  color: white;
+  width: 256px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.successMessage {
+  padding: 16px;
+  background-color: #2f855a;
+  color: white;
+  width: 256px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}

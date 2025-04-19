@@ -1,0 +1,7 @@
+export const API_CONFIG = {
+	COIN_MARKET_CAP_BASE_URL: "https://pro-api.coinmarketcap.com/v1/",
+	CURRENCY_OPTIONS: ["USD", "GBP", "EUR", "INR"],
+	DEFAULT_CURRENCY: "USD",
+	COIN_LISTING_LIMIT: 50,
+	RECENTLY_VIEWED_LIMIT: 10,
+};
