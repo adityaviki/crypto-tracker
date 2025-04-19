@@ -53,9 +53,11 @@ const RecentlyViewedCoins = ({
 
 	return (
 		<div className={styles.recentlyViewedContainer}>
-			<div className={styles.recentlyViewedTitle}>
-				Recently Viewed Coins
-			</div>
+			{recentlyViewedCoins.length > 0 && (
+				<div className={styles.recentlyViewedTitle}>
+					Recently Viewed Coins
+				</div>
+			)}
 			<div className={styles.recentlyViewedList}>
 				{recentlyViewedCoins.map((coinId, index) => {
 					const coin = cryptoCoins.find((coin) => coin.id === coinId);
