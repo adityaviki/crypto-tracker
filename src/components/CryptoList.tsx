@@ -83,7 +83,7 @@ const tableCoulmns: TableColumn[] = [
 	},
 	{
 		name: "volume_24h",
-		displayName: "7h Volume",
+		displayName: "24h Volume",
 	},
 	{
 		name: "volume_change_24h",
