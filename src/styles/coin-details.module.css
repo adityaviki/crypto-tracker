@@ -71,6 +71,8 @@
 
 .coinDetailsOuter {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	gap: 32px;
 }
 
@@ -109,5 +111,15 @@
 	}
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+@media screen and (max-width: 786px) {
+	.coinDetailsOuter {
+		flex-direction: column;
+	}
+
+	.modalContainer {
+		min-width: 400px;
 	}
 }
