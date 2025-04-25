@@ -57,7 +57,7 @@ const CoinDetailsModal = ({
 		if (!selectedCoin) return;
 		document.title = `${
 			selectedCoin?.name || "Coin"
-		} Details | Crypto Coin`;
+		} Details | Crypto Tracker`;
 	}, [selectedCoin]);
 
 	return (
