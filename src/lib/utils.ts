@@ -15,9 +15,8 @@ export function formatNumberCompact(
 	} else if (value >= 1e3) {
 		formatted = (value / 1e3).toFixed(2) + "K";
 	} else {
-		formatted = value.toFixed(2);
+		formatted = value.toExponential(2);
 	}
-
 	if (currency) {
 		const currencySymbol =
 			new Intl.NumberFormat("en-US", {

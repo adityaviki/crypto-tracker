@@ -53,6 +53,18 @@ const CoinDetailsModal = ({
 			.finally(() => setIsLoading(false));
 	}, [selectedCoin]);
 
+	useEffect(() => {
+		if (!coinMetadata) return;
+		const previousTitle = document.title;
+		document.title = `${
+			selectedCoin?.name || "Coin"
+		} Details | Crypto Coin`;
+
+		return () => {
+			document.title = previousTitle;
+		};
+	}, [coinMetadata]);
+
 	return (
 		<>
 			{selectedCoin && (
