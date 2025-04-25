@@ -14,6 +14,8 @@ export function formatNumberCompact(
 		formatted = (value / 1e6).toFixed(2) + "M";
 	} else if (value >= 1e3) {
 		formatted = (value / 1e3).toFixed(2) + "K";
+	} else if (value >= 1) {
+		formatted = value.toFixed(2);
 	} else {
 		formatted = value.toExponential(2);
 	}
